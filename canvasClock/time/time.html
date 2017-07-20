@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding:0px;margin:0px;
+	}
+     ul{
+     	list-style-type:none;   
+        width: 880px;
+       height: 300px;
+       border:30px  groove #89CFC1;
+     	 margin:30px auto; 
+     	 background:rgba(255,255,255,1);
+
+     	
+
+     }
+     ul li{
+     	float: left; font:600 30px 微软雅黑; 
+     	margin:80px 0px 0px 0px;
+     
+     }
+     div{
+     	width: 23%;
+     	margin:30px auto;
+        color: purple;
+        font:800 50px 汉仪咪咪体简;
+     	text-shadow:2px 5px 1px green,4px 6px 4px blue,6px 7px 6px yellow,8px 9px 8px orange;
+     }
+     .nian{	
+     	display: block;
+     	width: 23%;
+     	margin:0 auto;
+     	font:600 30px 微软雅黑;
+     	background:blue;
+     	padding:10px;
+   
+     
+     }
+     .nian span{
+     	padding-left: 25px;
+     	background-repeat:no-repeat;
+     }
+     .jindu{
+     	border-radius:50%;
+     	width: 1px;
+     	height: 20px;
+     	background:purple;
+     	color:yellow;
+     }
+
+	</style>
+	<script>
+   window.onload=function () {
+ 
+   	function bu0(n){
+          if(n>10){
+            n=""+n
+          }
+          else{
+          	n="0"+n
+          }
+          return n;
+   	}
+      
+      var oImg=document.getElementsByTagName('img');
+      function suishi(){
+      var now=new Date();
+      var str=bu0(now.getHours())+bu0(now.getMinutes())+bu0(now.getSeconds());
+      for (var i = 0; i < oImg.length; i++) {
+      	oImg[i].src="img/o"+str[i]+".png"
+      }
+   	}
+   	  suishi()
+   setInterval(suishi,1000)
+    
+
+      function da(){
+      var now1=new Date();
+      var str1=now1.getFullYear()+bu0(now1.getMonth())+bu0(now1.getDate())   
+     
+    var span=document.getElementsByClassName("nian")[0]
+    var spans=span.getElementsByTagName("span")
+    for (var i = 0; i < spans.length; i++) {
+    	spans[i].style.backgroundImage="url(img/"+str1[i]+".png)"
+    	if (i==5) {
+    		spans[i].style.backgroundImage="url(img/"+str1[i+1]+".png)"
+    	};
+    	
+    };
+     
+  }
+  da()  
+   setInterval(da,1000)
+ 
+  var jindu=document.getElementsByClassName("jindu")
+   var mun=0;
+   var mun1=0;
+   function bian(){
+     
+     mun+=94;
+   	 jindu[0].style.width=mun+"px"
+   	 jindu[1].style.width=mun+"px"
+   
+   	 if(mun>846){
+   	 	mun=0;
+
+   	 jindu[0].style.backgroundColor="#"+Math.ceil(Math.random()*0xffffff).toString(16)
+   	 jindu[1].style.backgroundColor="#"+Math.ceil(Math.random()*0xffffff).toString(16)
+   	 }
+
+   }
+     bian()
+   setInterval(bian,100)
+   
+
+ } 
+   
+
+
+
+	</script>
+</head>
+<body background="img/22.2.jpg">
+<div>现在北京时间</div>
+<span class="nian" >
+<span> </span>
+<span> </span>
+<span> </span>
+<span> </span>
+年
+<span> </span>
+<span> </span>
+月
+<span>  </span>
+<span>  </span>
+日
+</span>
+<div class="jindu"></div>
+<ul>
+	<li style="margin-left:30px;"><img src="img/0.png" alt=""></li>
+	<li style="margin:80px 30px 0px 0px"><img src="img/0.png" alt="">:</li>
+
+	<li><img src="img/0.png" alt=""></li>
+	<li style="margin:80px 30px 0px 0px"><img src="img/0.png" alt="">:</li>
+	
+	<li><img src="img/0.png" alt=""></li>
+	<li><img src="img/0.png" alt=""></li>
+	
+</ul>
+<div class="jindu"></div>
+	
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+</style>
+<script>
+window.onload=function(){
+    var con=document.querySelector("canvas")
+	var cans=con.getContext("2d")
+	function clock(){
+		cans.strokeStyle="black"
+		var x=200;
+		var y=200;
+		var r=150;
+
+		// 获取当前的时间
+		var timer=new Date()
+		var hour=timer.getHours()
+		var minute=timer.getMinutes()
+		var second=timer.getSeconds()
+	  
+		var h=(-180+hour*60+minute)*Math.PI/360
+		var m=(-90+minute*6)*Math.PI/180
+		var s=(-90+second*6)*Math.PI/180;
+		cans.beginPath()
+		for (var i = 0; i <60; i++) {
+			cans.moveTo(x,y)
+		   cans.arc(x,y,r,i*6*Math.PI/180,(i+1)*6*Math.PI/180,false) 
+		   // if(i==59){
+		   // 	cans.arc(x,y,r-10,)
+		   // }
+		};
+		cans.stroke()
+		cans.closePath()
+
+		cans.beginPath()
+	   cans.arc(x,y,r-10,0,2*Math.PI,false)
+		cans.fillStyle="white"
+		cans.fill()
+		cans.closePath()
+       
+        
+
+       	cans.beginPath()
+		for (var i = 0; i <12; i++) {
+			cans.moveTo(x,y)
+		   cans.arc(x,y,r,i*30*Math.PI/180,(i+1)*30*Math.PI/180,false)
+
+		};
+		cans.lineWidth=4
+		cans.stroke()
+		cans.beginPath()
+		cans.arc(x,y,r-15,0,2*Math.PI,false)
+		cans.fillStyle="white"
+		cans.fill()
+		cans.closePath()
+
+
+		cans.beginPath()
+		cans.moveTo(x,y)
+		cans.arc(x,y,r-60,h,h,false)
+		cans.stroke()
+		cans.closePath()
+
+		cans.beginPath()
+		cans.moveTo(x,y)
+		cans.arc(x,y,r-40,m,m,false)
+		cans.lineWidth=3
+		cans.stroke()
+		cans.closePath()
+
+		cans.beginPath()
+		cans.moveTo(x,y)
+		cans.arc(x,y,r-30,s,s,false)
+		cans.lineWidth=1
+		cans.strokeStyle="red"
+		cans.stroke()
+		cans.closePath()
+	    cans.beginPath()
+	} 
+   clock()
+   setInterval(clock,1000)
+
+}
+</script>
+<body>
+<canvas width="600px" height="600px">
+	
+</canvas>
+	
+</body>
+</html>

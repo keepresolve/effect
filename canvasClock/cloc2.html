@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+	canvas{
+		/*color: pink;*/
+		border:1px solid red;
+		margin-left: 300px;
+		margin-top: 100px;
+		
+	}
+</style><script>
+	window.onload=function(){
+		// 线
+		var cans=document.getElementById('cans')
+		var cons=cans.getContext("2d")
+	 //    cons.moveTo(0,100)
+	 //    cons.lineTo(200,200)
+	 //    cons.strokeStyle="yellow"
+	 //    cons.stroke()
+	 // 矩形
+	 // cons.fillStyle="red"
+	 // cons.fillRect(0,0,100,100)
+	 // cons.fillRect(200,200,200,100)
+	 // cons.fillRect(400,300,200,100)
+	 // cons.fillRect(100,60,200,100)
+	 // cons.fill()
+	 // cons.fillStyle="blue"
+	 // cons.fillRect(100,60,200,100)
+	 // cons.fill()
+     // 圆形
+     // cons.fillStyle="red"
+     // cons.beginPath()
+     // 圆形
+     // cons.arc(100,100,100,0,2*Math.PI)
+     // cons.moveTo(180,100)
+     // cons.arc(100,100,80,0,2*Math.PI)
+     // cons.moveTo(100,100)
+     // cons.lineTo(60,100)
+     // cons.moveTo(100,100)
+     // cons.lineTo(60,50)
+     // cons.stroke()
+     // 字体
+
+     // 渐变
+   // var bb=cons.createLinearGradient(10,20,20,50)
+   //     bb.addColorStop(0,"red")
+   //     bb.addColorStop(0.6,"orange")
+   //     bb.addColorStop(1,"blue")
+   //     cons.fillStyle=bb
+   //     cons.fillRect(10,10,50,50)
+   //     // cons.fill()
+     //放射式渐变 圆形渐变
+   // var  cc=cons.createRadialGradient(30,30,60,60,60,120)
+   // var  cc1=cons.createRadialGradient(140,140,60,240,240,120)
+   //  cc.addColorStop(0,"yellow")
+   //  cc1.addColorStop(0.3,"red")
+   //  cc1.addColorStop(1,"purple")
+   //  cc.addColorStop(1,"blue")
+   // cons.fillStyle=cc
+   // cons.fillRect(0,0,100,100)
+   //  cons.fillStyle=cc1
+   //  // cons.fill()
+   // cons.fillRect(100,100,300,300)
+   //  动态时钟
+   function move(){
+    var timer=new Date()
+    var hour=timer.getHours()
+    var minute=timer.getMinutes()
+    var second=timer.getSeconds()
+   cons.clearRect(0,0,600,600)
+  cons.beginPath()
+   cons.arc(300,300,300,0,2*Math.PI,false)
+   cons.stroke()
+   cons.closePath()
+
+   for (var i = 0; i <12; i++) {
+          cons.save()
+        cons.beginPath()
+        cons.lineWidth=5
+        cons.translate(300,300)
+        cons.rotate(i*30*Math.PI/180)
+        // cons.moveTo(0,285)
+        cons.lineTo(0,285)  
+        cons.lineTo(0,300)  
+        cons.closePath()
+        cons.stroke()
+        cons.restore();
+    };
+       for (var i = 0; i <60; i++) {
+       cons.save()
+        cons.beginPath()
+        cons.lineWidth=3
+        cons.translate(300,300)
+        cons.rotate(i*6*Math.PI/180)
+        cons.moveTo(0,290)
+        cons.lineTo(0,300)
+        cons.closePath()
+        cons.stroke()
+        cons.restore();
+    };
+    // 秒
+    cons.save()
+    cons.beginPath()
+    cons.translate(300,300)
+    cons.rotate(second*6*Math.PI/180)
+    cons.moveTo(0,0)
+    cons.lineTo(0,-280)
+    cons.lineWidth=3
+    cons.strokeStyle="red"
+    cons.stroke()
+    cons.closePath()
+    cons.restore()
+    // 分
+    cons.save()
+    cons.beginPath()
+    cons.translate(300,300)
+    cons.rotate((minute+second/60)*6*Math.PI/180)
+     cons.moveTo(0,0)
+     cons.lineTo(0,-200)
+     cons.strokeStyle="black"
+      cons.lineWidth=3
+    cons.closePath()
+     cons.stroke() 
+     cons.restore()
+     // 小时
+    cons.save()
+    cons.beginPath()
+    cons.translate(300,300)
+    cons.rotate((hour+minute/60+second/360)*30*Math.PI/180)
+     cons.moveTo(0,0)
+     cons.lineTo(0,-150)
+     cons.lineWidth=5
+     cons.strokeStyle="black"
+    cons.closePath()
+     cons.stroke() 
+     cons.restore()
+    } 
+    move()
+    setInterval(function(){
+       move()
+    },30)
+     
+    //  cons.beginPath()
+    // cons.strokeStyle="black"
+    //   cons.lineWidth=6
+    //   cons.moveTo(300,300)
+   	//   cons.lineTo(400,500)
+   	//  // cons.translate(600,600)
+    //   cons.stroke()
+   	// cons.lineJoin="bevel"
+   	// cons.lineCap="square"	
+    // cons.closePath()
+                
+
+ //图片
+ // var img=document.getElementsByTagName('img')[0]
+// 图片展示
+ // cons.drawImage(img,20,20)//坐标基于画布
+ // cons.drawImage(img,20,20,100,100)//同上后面可设置宽高
+//图片剪切
+// cons.drawImage(img,20,20,20,20,0,0,200,200)//剪切
+                    // 第一个20,20基于图片的坐标或者说基于画布0,0坐标（开始剪切坐标）第二个基于第一个位置20,20个是结束。0,0是剪切后的要展示图片的位置坐标
+                    // 200，200是展示图片的宽高
+//背景
+// var aa=cons.createPattern(img,"repeat")//平铺方式和css里面一样
+// cons.rect(0,0,400,400)
+// cons.fillStyle=aa
+// cons.fill()
+
+//阴影模糊
+// var aa=cons.shadowColor="red"
+// var aa=cons.shadowOffsetX=10
+// var aa=cons.shadowOffsetY=10
+// var aa=cons.shadowBlur=40
+// cons.shadowColor="blue"
+// cons.shadowOffsetX=20
+// cons.shadowOffsetY=20
+// cons.shadowBlur=60
+// cons.rect(100,100,200,200)
+// cons.fillStyle="blue"
+// cons.fillStyle=aa
+// cons.fill()
+
+
+
+
+}
+</script></head>
+
+
+<body>
+	<canvas width="600px" height="600px" id="cans">
+	</canvas>
+	<!-- <img src="case4.png" alt="" width="300px" height="300px"> -->
+
+</body></html>
